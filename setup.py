@@ -4,14 +4,14 @@ from setuptools import setup, find_packages
 
 setup(
     name="pioreactor_relay_plugin",
-    version="0.0.1",
+    version="0.0.2",
     license="MIT",
     description="Turn your add-on (light source, pump) on or off.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     author_email="kelly@pioreactor.com",
     author="Kelly Tran",
-    url="https://github.com/Pioreactor/pioreactor-relay-plugin",
+    url="https://github.com/kellytr/pioreactor-relay-plugin",
     packages=find_packages(),
     include_package_data=True,
     entry_points={

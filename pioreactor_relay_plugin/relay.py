@@ -14,7 +14,7 @@ class Relay(BackgroundJob):
     }
 
     def __init__(self, hz, unit, experiment, start_on = True, **kwargs):
-        super().__init__(job_name="relaym", unit=unit, experiment=experiment)
+        super().__init__(job_name="relay", unit=unit, experiment=experiment)
         self.hz = hz
         
         if start_on:
