@@ -4,10 +4,10 @@ from pioreactor.hardware import PWM_TO_PIN
 from pioreactor.utils.pwm import PWM
 from pioreactor.utils import clamp
 from pioreactor.config import config
-from pioreactor.background_jobs.base import BackgroundJob
+from pioreactor.background_jobs.base import BackgroundJobWithDodging
 from pioreactor.whoami import get_unit_name, get_latest_experiment_name
 
-class Relay(BackgroundJob):
+class Relay(BackgroundJobWithDodging):
 
     published_settings = {
         "on": {"datatype": "boolean", "settable": True},
@@ -24,7 +24,7 @@ class Relay(BackgroundJob):
             self.duty_cycle = 0
             self.on = False
             
-        self.pwm_pin = PWM_TO_PIN[config.getint("PWM_reverse", "relay")]
+        self.pwm_pin = PWM_TO_PIN[config.get("PWM_reverse", "relay")]
         # looks at config.ini/configuration on UI to match 
         # changed PWM channel 2 to "relay" on leader
         # whatevers connected to channel 2 will turn on/off 
@@ -57,6 +57,12 @@ class Relay(BackgroundJob):
         self.set_on(False)
         self.pwm.cleanup()
         
+    def action_to_do_before_od_reading(self):
+        self.set_on(False)
+    
+    def action_to_do_after_od_reading(self):
+        self.set_on(True)
+    
 import click
 
 @click.command(name="relay")
@@ -81,3 +87,6 @@ def click_relay(hz, start_off):
         start_on = not start_off
     )
     job.block_until_disconnected()
+    
+if __name__ == "__main__":
+    click_relay()
