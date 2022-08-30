@@ -17,9 +17,26 @@ pios install-plugin pioreactor-relay-plugin   # to install on all Pioreactors in
 
 Or install through the web interface (_Plugins_ tab). This will install the plugin on all Pioreactors within the cluster. 
 
+(Optional) Edit the following to your `config.ini`, or in the _Configurations_ tab on the web interface: 
+
+```
+[PWM]
+<the PWM channel you pick>=relay
+
+[relay]
+hz=100 
+```
+
 ## Usage
 
-When installed, under _Manage_, there will be a new _Activities_ option called _Relay_. Editable settings include an "on/off" switch to allow the plugin to be toggled while active. 
+#### Through the ocmmand line: 
+```
+pio run relay
+```
+
+#### Through the UI: 
+
+Under _Manage_, there will be a new _Activities_ option called _Relay_. Editable settings include an "on/off" switch to allow the plugin to be toggled while active. 
 
 ## Plugin documentation
 
