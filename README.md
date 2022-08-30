@@ -1,6 +1,8 @@
 
 ## Pioreactor relay plugin
 
+![CI tests](https://github.com/kellytr/pioreactor-led-calibration-plugin/actions/workflows/ci.yaml/badge.svg)
+
 This relay plugin allows the user to turn on or off any additional hardware piece on their Pioreactor at a specific channel (as stated in the Configuration).
 
 ## Installation
