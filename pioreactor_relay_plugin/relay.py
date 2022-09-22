@@ -12,9 +12,11 @@ class Relay(BackgroundJobWithDodging):
     published_settings = {
         "on": {"datatype": "boolean", "settable": True},
     }
+    
+    job_name="relay"
 
     def __init__(self, hz, unit, experiment, start_on = True, **kwargs):
-        super().__init__(job_name="relay", unit=unit, experiment=experiment)
+        super().__init__(unit=unit, experiment=experiment)
         self.hz = hz
         
         if start_on:
